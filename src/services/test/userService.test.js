@@ -1,20 +1,20 @@
 import UserService from "../UserService.js";
 import UserRepositoryStub from "./UserRepositoryStub";
-
+import User from "@/entities/User";
 
 describe("userService test", () => {
+  /**
+   *
+   * @type {UserService}
+   */
   let userService = null;
   beforeEach(() => {
     userService = new UserService(new UserRepositoryStub());
-    console.log(userService);
   });
 
-  test("create user", () => {
-    // const createdUser = userService.create(user);
-    // expect(createdUser).toEqual(user);
+  test("create user", async () => {
+    const user = new User("yk", 1234);
+    const createdUser = await userService.create(user);
+    expect(createdUser).toEqual(user);
   });
-
-  // test("trying exists create user", () => {
-  //   expect(userService.create(user)).toThrowError("test");
-  // });
 });
