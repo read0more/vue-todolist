@@ -27,7 +27,7 @@ export default class userService {
    *
    * @param id
    * @param {Object} fields
-   * @param {String} fields.password
+   * @param {?String} fields.password
    * @returns {Promise<User>}
    */
   async update(id, fields) {
