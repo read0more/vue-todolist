@@ -9,17 +9,18 @@ import User from "@/entities/User";
 let userService = null;
 describe("userService", () => {
   userService = new UserService(new UserRepositoryStub());
+  const newUser = new User("yk", 1234);
 
-  describe('create', () => {
+  describe("create", () => {
     test("create user", async () => {
-      const user = new User("yk", 1234);
-      const createdUser = await userService.create(user);
-      expect(createdUser).toEqual(user);
+      const createdUser = await userService.create(newUser);
+      expect(createdUser).toEqual(newUser);
     });
 
     test("trying exists create user", async () => {
-      const user = new User("yk", 1234);
-      await expect(userService.create(user)).rejects.toThrow(`${user.id}는 이미 있는 회원`);
+      await expect(userService.create(newUser)).rejects.toThrow(
+        `${newUser.id}는 이미 있는 회원`
+      );
     });
   });
 });
