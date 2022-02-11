@@ -23,4 +23,16 @@ describe("userService", () => {
       );
     });
   });
+
+  describe("read",  () => {
+    test('read user', async () => {
+      const user = await userService.read(newUser.id);
+      expect(user).toEqual(newUser);
+    });
+
+    test('read doesn\'t exists user', async () => {
+      const user = await userService.read('');
+      expect(user).toBe(undefined);
+    });
+  });
 });
