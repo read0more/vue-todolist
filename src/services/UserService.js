@@ -1,6 +1,8 @@
 import User from "@/entities/User.js";
 
 export default class userService {
+  ALLOWED_UPDATE_FIELDS = ["password"];
+
   constructor(userRepository) {
     this.userRepository = userRepository;
   }
@@ -31,6 +33,14 @@ export default class userService {
    * @returns {Promise<User>}
    */
   async update(id, fields) {
+    const notAllowedFields = Object.keys(fields).filter(
+      (key) => !this.ALLOWED_UPDATE_FIELDS.includes(key)
+    );
+
+    if (notAllowedFields.length) {
+      throw new Error(`${notAllowedFields.join(', ')}는 변경 할 수 없다.`);
+    }
+
     if (fields) return this.userRepository.update(id, fields);
   }
 }

@@ -39,10 +39,20 @@ describe("userService", () => {
   describe("update", () => {
     test("update user", async () => {
       const updateFields = {
-        password: 'changed_password'
+        password: "changed_password",
       };
       const updatedUser = await userService.update(newUser.id, updateFields);
       expect(updatedUser).toEqual(new User({ ...newUser, ...updateFields }));
+    });
+
+    test("not allowed field", async () => {
+      const updateFields = {
+        id: "not_working",
+        what: "not_working_too",
+      };
+      await expect(userService.update(newUser.id, updateFields)).rejects.toThrow(
+        `${Object.keys(updateFields).join(', ')}는 변경 할 수 없다.`
+      );
     });
   });
 });
