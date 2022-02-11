@@ -1,6 +1,6 @@
 import User from "@/entities/User.js";
 
-export default class userService {
+export default class UserService {
   ALLOWED_UPDATE_FIELDS = ["password"];
 
   constructor(userRepository) {
