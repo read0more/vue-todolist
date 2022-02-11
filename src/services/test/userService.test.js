@@ -9,7 +9,7 @@ import User from "@/entities/User";
 let userService = null;
 describe("userService", () => {
   userService = new UserService(new UserRepositoryStub());
-  const newUser = new User("yk", 1234);
+  const newUser = new User({ id: "yk", password: 1234 });
 
   describe("create", () => {
     test("create user", async () => {
@@ -24,14 +24,14 @@ describe("userService", () => {
     });
   });
 
-  describe("read",  () => {
-    test('read user', async () => {
+  describe("read", () => {
+    test("read user", async () => {
       const user = await userService.read(newUser.id);
       expect(user).toEqual(newUser);
     });
 
-    test('read doesn\'t exists user', async () => {
-      const user = await userService.read('');
+    test("read doesn't exists user", async () => {
+      const user = await userService.read("");
       expect(user).toBe(undefined);
     });
   });
