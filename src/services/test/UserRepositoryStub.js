@@ -1,3 +1,5 @@
+import User from "@/entities/User.js";
+
 export default class UserRepositoryStub {
   users = new Map();
 
@@ -12,5 +14,11 @@ export default class UserRepositoryStub {
 
   async read(id) {
     return this.users.get(id);
+  }
+
+  async update(id, fields) {
+    const target = await this.read(id);
+    this.users.set(id, new User({ ...target, ...fields }));
+    return this.read(id);
   }
 }

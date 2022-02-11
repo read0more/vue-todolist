@@ -35,4 +35,14 @@ describe("userService", () => {
       expect(user).toBe(undefined);
     });
   });
+
+  describe("update", () => {
+    test("update user", async () => {
+      const updateFields = {
+        password: 'changed_password'
+      };
+      const updatedUser = await userService.update(newUser.id, updateFields);
+      expect(updatedUser).toEqual(new User({ ...newUser, ...updateFields }));
+    });
+  });
 });
