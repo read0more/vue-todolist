@@ -23,6 +23,10 @@ export default class UserRepositoryStub {
   }
 
   async delete(id) {
+    if (!this.users.has(id)) {
+      throw new Error(`${id}는 없는 회원`);
+    }
+
     this.users.delete(id);
   }
 }

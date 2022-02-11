@@ -64,5 +64,11 @@ describe("userService", () => {
       const user = await userService.read(newUser.id);
       expect(user).toEqual(undefined);
     });
+
+    test("delete doesn't exists user", async () => {
+      await expect(userService.delete(newUser.id)).rejects.toThrow(
+        `${newUser.id}는 없는 회원`
+      );
+    });
   });
 });
