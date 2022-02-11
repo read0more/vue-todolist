@@ -50,9 +50,19 @@ describe("userService", () => {
         id: "not_working",
         what: "not_working_too",
       };
-      await expect(userService.update(newUser.id, updateFields)).rejects.toThrow(
-        `${Object.keys(updateFields).join(', ')}는 변경 할 수 없다.`
+      await expect(
+        userService.update(newUser.id, updateFields)
+      ).rejects.toThrow(
+        `${Object.keys(updateFields).join(", ")}는 변경 할 수 없다.`
       );
+    });
+  });
+
+  describe("delete", () => {
+    test("delete user", async () => {
+      await userService.delete(newUser.id);
+      const user = await userService.read(newUser.id);
+      expect(user).toEqual(undefined);
     });
   });
 });

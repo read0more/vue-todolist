@@ -43,4 +43,13 @@ export default class userService {
 
     if (fields) return this.userRepository.update(id, fields);
   }
+
+  /**
+   *
+   * @param id
+   * @returns {Promise<void>}
+   */
+  async delete(id) {
+    return this.userRepository.delete(id);
+  }
 }

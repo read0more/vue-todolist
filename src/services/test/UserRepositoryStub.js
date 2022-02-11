@@ -21,4 +21,8 @@ export default class UserRepositoryStub {
     this.users.set(id, new User({ ...target, ...fields }));
     return this.read(id);
   }
+
+  async delete(id) {
+    this.users.delete(id);
+  }
 }
