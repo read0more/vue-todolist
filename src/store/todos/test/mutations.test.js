@@ -20,4 +20,16 @@ describe("todos mutation", () => {
     mutations.addTodo(state, newTodo);
     expect(state.todos.pop()).toEqual(newTodo);
   });
+
+  test("update todo", () => {
+    const updatedTodo = new Todo({
+      id: 3,
+      content: "변경된 내용3",
+      done: true,
+    });
+    mutations.updateTodo(state, updatedTodo);
+    expect(state.todos.find((todo) => todo.id === updatedTodo.id)).toEqual(
+      updatedTodo
+    );
+  });
 });
