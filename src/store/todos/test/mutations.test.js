@@ -32,4 +32,12 @@ describe("todos mutation", () => {
       updatedTodo
     );
   });
+
+  test("delete todo", () => {
+    const id = 4;
+    mutations.deleteTodo(state, id);
+    expect(state.todos.filter((todo) => todo.id !== id)).toEqual(
+        state.todos
+    );
+  });
 });

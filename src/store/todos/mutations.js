@@ -7,4 +7,9 @@ export default {
       return updatedTodo.id === todo.id ? updatedTodo : todo;
     });
   },
+  deleteTodo: (state, id) => {
+    state.todos = state.todos.filter((todo) => {
+      return todo.id !== id;
+    });
+  },
 };
