@@ -1,9 +1,8 @@
-import state from "./user/state.js";
-import getters from "./user/getters.js";
-import actions from "./user/actions.js";
-import mutations from "./user/mutations.js";
+import { createStore } from "vuex";
+import todos from "./modules/todos";
 
-export default {
-  namespaced: true,
-  state,
-};
+export default createStore({
+  modules: {
+    todos,
+  }
+});

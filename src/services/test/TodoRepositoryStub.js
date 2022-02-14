@@ -2,7 +2,7 @@ import Todo from "@/entities/Todo.js";
 
 export default class TodoRepositoryStub {
   constructor(todos) {
-    this.todos = todos;
+    this.todos = todos ?? new Map();
   }
 
   async create(todo) {

@@ -1,11 +1,15 @@
-import { INITIAL_TODO, ADD_TODO, UPDATE_TODO, DELETE_TODO } from "./types.js";
+import { mutations } from "./types.js";
+import TodoService from "@/services/TodoService";
+import TodoRepositoryStub from "@/services/test/TodoRepositoryStub";
+import Todo from "@/entities/Todo";
 
-// todo: 실제로 todo 관리할 곳에 요청
+const todoService = new TodoService(new TodoRepositoryStub());
 export default {
-  addTodoToRepository({ commit }) {
+  async addTodoToRepository({ commit }, todo) {
+    await todoService.create(todo);
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        commit(ADD_TODO);
+        commit(mutations.ADD_TODO, todo);
         resolve();
       }, 100);
     });
@@ -14,7 +18,7 @@ export default {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         const todosFromRepository = [];
-        commit(INITIAL_TODO, todosFromRepository);
+        commit(mutations.INITIAL_TODO, todosFromRepository);
         resolve();
       }, 100);
     });
@@ -23,7 +27,7 @@ export default {
   updateTodoToRepository({ commit }) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        commit(UPDATE_TODO);
+        commit(mutations.UPDATE_TODO);
         resolve();
       }, 100);
     });
@@ -32,7 +36,7 @@ export default {
   deleteTodoToRepository({ commit }) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        commit(DELETE_TODO);
+        commit(mutations.DELETE_TODO);
         resolve();
       }, 100);
     });
