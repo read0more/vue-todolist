@@ -1,14 +1,12 @@
 <script setup>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
+import Header from "@/components/Header.vue";
 </script>
 
 <template>
-  <header id="header">
-    <h1>todos</h1>
-    <input id="new-todo" autofocus autocomplete="off" placeholder="What needs to be done?">
-  </header>
   <section id="main">
+    <Header></Header>
     <input id="toggle-all" type="checkbox">
     <ul id="todo-list">
       <li class="todo">
