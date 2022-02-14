@@ -5,16 +5,12 @@ export default {
     state.todos = todos;
   },
   [mutations.ADD_TODO]: (state, newTodo) => {
-    state.todos.push(newTodo);
+    state.todos.set(newTodo.id, newTodo);
   },
   [mutations.UPDATE_TODO]: (state, updatedTodo) => {
-    state.todos = state.todos.map((todo) => {
-      return updatedTodo.id === todo.id ? updatedTodo : todo;
-    });
+    state.todos.set(updatedTodo.id, updatedTodo);
   },
   [mutations.DELETE_TODO]: (state, id) => {
-    state.todos = state.todos.filter((todo) => {
-      return todo.id !== id;
-    });
+    state.todos.delete(id);
   },
 };
