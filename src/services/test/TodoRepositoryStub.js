@@ -1,11 +1,15 @@
 import Todo from "@/entities/Todo.js";
 
 export default class TodoRepositoryStub {
-  todos = new Map();
+  constructor(todos) {
+    this.todos = todos;
+  }
 
   async create(todo) {
-    this.todos.set(todo.id, todo);
-    return todo;
+    const id = this.todos.size + 1;
+    const createdTodo = { ...todo, id };
+    this.todos.set(id, createdTodo);
+    return createdTodo;
   }
 
   async read(id) {
