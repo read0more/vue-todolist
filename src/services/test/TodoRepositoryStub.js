@@ -16,6 +16,10 @@ export default class TodoRepositoryStub {
     return this.todos.get(id);
   }
 
+  async readAll() {
+    return this.todos;
+  }
+
   async update(id, fields) {
     const target = await this.read(id);
     this.todos.set(id, new Todo({ ...target, ...fields }));

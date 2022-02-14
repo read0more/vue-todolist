@@ -14,7 +14,10 @@ describe("userService", () => {
     [3, { id: 3, done: false }],
     [4, { id: 4, done: true }],
   ]);
-  todoService = new TodoService(new TodoRepositoryStub(todos));
+
+  beforeEach(() => {
+    todoService = new TodoService(new TodoRepositoryStub(todos));
+  })
 
   test("create", async () => {
     const newTodo = new Todo({ id: 5, content: "새 todo", done: false });
@@ -24,6 +27,10 @@ describe("userService", () => {
 
   test("read", async () => {
     expect(await todoService.read(todos.get(1).id)).toEqual(todos.get(1));
+  });
+
+  test("readAll", async () => {
+    expect(await todoService.readAll()).toEqual(todos);
   });
 
   describe("update", () => {
@@ -56,14 +63,15 @@ describe("userService", () => {
   });
 
   describe("delete", () => {
-    const id = todos.get(1).id;
     test("delete todo", async () => {
+      const id = todos.get(1).id;
       await todoService.delete(id);
       const todo = await todoService.read(id);
       expect(todo).toEqual(undefined);
     });
 
     test("delete doesn't exists todo", async () => {
+      const id = 999;
       await expect(todoService.delete(id)).rejects.toThrow(
         `${id}는 없는 todo`
       );

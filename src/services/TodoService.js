@@ -27,6 +27,14 @@ export default class TodoService {
 
   /**
    *
+   * @returns {Promise<TodoEntity[]> | undefined}
+   */
+  async readAll() {
+    return this.todoRepository.readAll();
+  }
+
+  /**
+   *
    * @param id
    * @param {Object} fields
    * @param {?String} fields.content
