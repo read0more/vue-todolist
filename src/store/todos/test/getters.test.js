@@ -1,19 +1,20 @@
 import getters from "../getters.js";
+import Todo from "@/entities/Todo";
 
 describe("todos getter", () => {
   test("get todos only done", () => {
     const state = {
       todos: [
-        { id: 1, done: true },
-        { id: 2, done: false },
-        { id: 3, done: false },
-        { id: 4, done: true },
+        new Todo({ id: 1, content: "내용1", done: true }),
+        new Todo({ id: 2, content: "내용2", done: false }),
+        new Todo({ id: 3, content: "내용3", done: false }),
+        new Todo({ id: 4, content: "내용4", done: true }),
       ],
     };
     const filtered = getters.doneTodos(state);
     expect(filtered).toEqual([
-      { id: 1, done: true },
-      { id: 4, done: true },
+      new Todo({ id: 1, content: "내용1", done: true }),
+      new Todo({ id: 4, content: "내용4", done: true }),
     ]);
   });
 });

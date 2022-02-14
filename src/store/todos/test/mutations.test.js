@@ -1,4 +1,5 @@
 import mutations from "../mutations.js";
+import Todo from "@/entities/Todo";
 
 describe("todos mutation", () => {
   let state;
@@ -6,16 +7,16 @@ describe("todos mutation", () => {
   beforeEach(() => {
     state = {
       todos: [
-        { id: 1, done: true },
-        { id: 2, done: false },
-        { id: 3, done: false },
-        { id: 4, done: true },
+        new Todo({ id: 1, content: "내용1", done: true }),
+        new Todo({ id: 2, content: "내용2", done: false }),
+        new Todo({ id: 3, content: "내용3", done: false }),
+        new Todo({ id: 4, content: "내용4", done: true }),
       ],
     };
   });
 
   test("add todo", () => {
-    const newTodo = { id: 5, done: false };
+    const newTodo = new Todo({ id: 5, content: "내용5", done: false });
     mutations.addTodo(state, newTodo);
     expect(state.todos.pop()).toEqual(newTodo);
   });
