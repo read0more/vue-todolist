@@ -1,10 +1,13 @@
-import actions from "../actions.js";
+import getActions from "../actions.js";
 import { mutations } from "../types.js";
 import Todo from "@/entities/Todo.js";
+import TodoRepositoryStub from "@/services/test/TodoRepositoryStub";
 
 describe("todos actions", () => {
   let commitStub = null;
+  let actions = null;
   beforeEach(() => {
+    actions = getActions(new TodoRepositoryStub());
     commitStub = jest.fn();
   });
 
@@ -17,7 +20,7 @@ describe("todos actions", () => {
   test("get all todos", async () => {
     await actions.getAllTodos({ commit: commitStub });
     // todo: 실제로 통신을 하게 되면 빈 배열 하드 코딩 대신 response에 대한 mock으로
-    expect(commitStub).toHaveBeenCalledWith(mutations.INITIAL_TODO, []);
+    expect(commitStub).toHaveBeenCalledWith(mutations.INITIAL_TODO, new Map());
   });
 
   test("commit updateTodo", async () => {

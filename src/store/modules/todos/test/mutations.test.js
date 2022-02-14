@@ -6,12 +6,12 @@ describe("todos mutation", () => {
 
   beforeEach(() => {
     state = {
-      todos: [
-        new Todo({ id: 1, content: "내용1", done: true }),
-        new Todo({ id: 2, content: "내용2", done: false }),
-        new Todo({ id: 3, content: "내용3", done: false }),
-        new Todo({ id: 4, content: "내용4", done: true }),
-      ],
+      todos: new Map([
+        [1, new Todo({ id: 1, content: "내용1", done: true })],
+        [2, new Todo({ id: 2, content: "내용2", done: false })],
+        [3, new Todo({ id: 3, content: "내용3", done: false })],
+        [4, new Todo({ id: 4, content: "내용4", done: true })],
+      ]),
     };
   });
 
@@ -24,7 +24,7 @@ describe("todos mutation", () => {
   test("add todo", () => {
     const newTodo = new Todo({ id: 5, content: "내용5", done: false });
     mutations.addTodo(state, newTodo);
-    expect(state.todos.pop()).toEqual(newTodo);
+    expect(state.todos.get(5)).toEqual(newTodo);
   });
 
   test("update todo", () => {
@@ -34,14 +34,12 @@ describe("todos mutation", () => {
       done: true,
     });
     mutations.updateTodo(state, updatedTodo);
-    expect(state.todos.find((todo) => todo.id === updatedTodo.id)).toEqual(
-      updatedTodo
-    );
+    expect(state.todos.get(3)).toEqual(updatedTodo);
   });
 
   test("delete todo", () => {
     const id = 4;
     mutations.deleteTodo(state, id);
-    expect(state.todos.filter((todo) => todo.id !== id)).toEqual(state.todos);
+    expect(state.todos.get(id)).toBe(undefined);
   });
 });
