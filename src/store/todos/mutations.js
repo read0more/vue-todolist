@@ -1,6 +1,9 @@
-import { ADD_TODO, UPDATE_TODO, DELETE_TODO } from "./types.js";
+import {ADD_TODO, UPDATE_TODO, DELETE_TODO, INITIAL_TODO} from "./types.js";
 
 export default {
+  [INITIAL_TODO]: (state, todos) => {
+    state.todos = todos;
+  },
   [ADD_TODO]: (state, newTodo) => {
     state.todos.push(newTodo);
   },

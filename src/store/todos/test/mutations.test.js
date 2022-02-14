@@ -15,6 +15,12 @@ describe("todos mutation", () => {
     };
   });
 
+  test("initial todo", () => {
+    const emptyState = { todos: null };
+    mutations.initialTodo(emptyState, state.todos);
+    expect(emptyState.todos).toEqual(state.todos);
+  });
+
   test("add todo", () => {
     const newTodo = new Todo({ id: 5, content: "내용5", done: false });
     mutations.addTodo(state, newTodo);
@@ -36,8 +42,6 @@ describe("todos mutation", () => {
   test("delete todo", () => {
     const id = 4;
     mutations.deleteTodo(state, id);
-    expect(state.todos.filter((todo) => todo.id !== id)).toEqual(
-        state.todos
-    );
+    expect(state.todos.filter((todo) => todo.id !== id)).toEqual(state.todos);
   });
 });
