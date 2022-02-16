@@ -8,7 +8,7 @@ const store = useStore();
 const input = ref();
 
 function onSubmit() {
-  const todo = new Todo({ content: "새 todo", done: false });
+  const todo = new Todo({ content: input.value, done: false });
   store.dispatch(actions.ADD_TODO_TO_REPOSITORY, todo);
 }
 </script>

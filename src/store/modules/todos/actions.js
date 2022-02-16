@@ -5,12 +5,10 @@ export default (todoRepository) => {
   const todoService = new TodoService(todoRepository);
   return {
     async addTodoToRepository({ commit }, todo) {
-      await todoService.create(todo);
+      const createTodo = await todoService.create(todo);
       return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          commit(mutations.ADD_TODO, todo);
-          resolve();
-        }, 100);
+        commit(mutations.ADD_TODO, createTodo);
+        resolve();
       });
     },
     getAllTodos({ commit }) {
