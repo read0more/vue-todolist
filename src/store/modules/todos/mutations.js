@@ -2,7 +2,7 @@ import { mutations } from "./types.js";
 
 export default {
   [mutations.INITIAL_TODO]: (state, todos) => {
-    state.todos = todos;
+    state.todos = new Map([...todos.entries()]);
   },
   [mutations.ADD_TODO]: (state, newTodo) => {
     state.todos.set(newTodo.id, newTodo);
