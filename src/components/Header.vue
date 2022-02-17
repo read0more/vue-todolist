@@ -10,6 +10,7 @@ const input = ref();
 function onSubmit() {
   const todo = new Todo({ content: input.value, done: false });
   store.dispatch(actions.ADD_TODO_TO_REPOSITORY, todo);
+  input.value = "";
 }
 </script>
 

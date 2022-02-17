@@ -2,35 +2,20 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import Header from "@/components/Header.vue";
+import Main from "@/components/Main.vue";
 </script>
 
 <template>
-  <section id="main">
-    <Header></Header>
-    <input id="toggle-all" type="checkbox">
-    <ul id="todo-list">
-      <li class="todo">
-        <div class="view">
-          <input class="toggle" type="checkbox">
-          <label></label>
-          <button class="destroy"></button>
-        </div>
-        <input class="edit" type="text">
-      </li>
-    </ul>
-  </section>
+  <Header></Header>
+  <Main></Main>
   <footer id="footer">
-				<span id="todo-count">
-					<strong></strong> 0 left
-				</span>
+    <span id="todo-count"> <strong></strong> 0 left </span>
     <ul id="filters">
       <li><a href="#/all">All</a></li>
       <li><a href="#/active">Active</a></li>
       <li><a href="#/completed">Completed</a></li>
     </ul>
-    <button id="clear-completed">
-      Clear completed 0
-    </button>
+    <button id="clear-completed">Clear completed 0</button>
   </footer>
 </template>
 
