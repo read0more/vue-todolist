@@ -10,4 +10,12 @@ export default {
       })
     );
   },
+  leftTodos: (state) => {
+    return new Map(
+      [...state.todos].filter((element) => {
+        const [_, todo] = [...element];
+        return !todo.done;
+      })
+    );
+  },
 };
