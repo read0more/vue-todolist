@@ -21,10 +21,10 @@ export default (todoRepository) => {
       });
     },
 
-    updateTodoToRepository({ commit }) {
+    updateTodoToRepository({ commit }, todo) {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
-          commit(mutations.UPDATE_TODO);
+          commit(mutations.UPDATE_TODO, todo);
           resolve();
         }, 100);
       });

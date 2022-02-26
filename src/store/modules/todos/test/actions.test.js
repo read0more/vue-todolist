@@ -24,8 +24,9 @@ describe("todos actions", () => {
   });
 
   test("commit updateTodo", async () => {
-    await actions.updateTodoToRepository({ commit: commitStub });
-    expect(commitStub).toHaveBeenCalledWith(mutations.UPDATE_TODO);
+    const todo = new Todo({ id: 1, content: "todo", done: false });
+    await actions.updateTodoToRepository({ commit: commitStub }, todo);
+    expect(commitStub).toHaveBeenCalledWith(mutations.UPDATE_TODO, todo);
   });
 
   test("commit deleteTodo", async () => {

@@ -17,7 +17,7 @@ describe("userService", () => {
 
   beforeEach(() => {
     todoService = new TodoService(new TodoRepositoryStub(todos));
-  })
+  });
 
   test("create", async () => {
     const newTodo = new Todo({ id: 5, content: "새 todo", done: false });
@@ -35,30 +35,9 @@ describe("userService", () => {
 
   describe("update", () => {
     test("update todo", async () => {
-      const updateFields = {
-        content: "changed_content",
-        done: false,
-      };
-      const updatedUser = await todoService.update(
-        todos.get(1).id,
-        updateFields
-      );
-      expect(updatedUser).toEqual(
-        new Todo({ ...todos.get(1), ...updateFields })
-      );
-    });
-
-    test("not allowed field", async () => {
-      const updateFields = {
-        id: "not_working",
-        what: "not_working_too",
-      };
-
-      await expect(
-        todoService.update(todos.get(1).id, updateFields)
-      ).rejects.toThrow(
-        `${Object.keys(updateFields).join(", ")}는 변경 할 수 없다.`
-      );
+      const todo = new Todo({ id: 3, content: "수정된 todo", done: true });
+      const updatedTodo = await todoService.update(todo);
+      expect(updatedTodo).toEqual(todo);
     });
   });
 
@@ -72,9 +51,7 @@ describe("userService", () => {
 
     test("delete doesn't exists todo", async () => {
       const id = 999;
-      await expect(todoService.delete(id)).rejects.toThrow(
-        `${id}는 없는 todo`
-      );
+      await expect(todoService.delete(id)).rejects.toThrow(`${id}는 없는 todo`);
     });
   });
 });
