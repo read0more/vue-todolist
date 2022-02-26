@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Layout from "@/components/Layout.vue";
+import Index from "@/page/Index.vue";
 
 export default createRouter({
   history: createWebHistory(),
   linkActiveClass: "active",
   routes: [
-    { path: "/", component: Layout },
-    { path: "/:filter", component: Layout },
+    { path: "/", component: Index },
+    { path: "/:filter", component: Index },
   ],
 });
