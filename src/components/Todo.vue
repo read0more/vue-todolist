@@ -29,12 +29,24 @@ function handleEdit({ key }) {
 function handleDelete() {
   store.dispatch(actions.DELETE_TODO_TO_REPOSITORY, props["todo"].id);
 }
+
+function handleDone() {
+  store.dispatch(actions.UPDATE_TODO_TO_REPOSITORY, {
+    ...props["todo"],
+    done: !props["todo"].done,
+  });
+}
 </script>
 
 <template>
   <li class="todo" :class="{ editing: isEdit }">
     <div class="view" @dblclick="isEdit = true">
-      <input class="toggle" type="checkbox" />
+      <input
+        class="toggle"
+        type="checkbox"
+        :checked="todo.done"
+        @click="handleDone"
+      />
       <label>{{ todo.content }}</label>
       <button class="destroy" @click="handleDelete"></button>
     </div>
