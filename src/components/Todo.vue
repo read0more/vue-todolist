@@ -25,6 +25,10 @@ function handleEdit({ key }) {
     isEdit.value = false;
   }
 }
+
+function handleDelete() {
+  store.dispatch(actions.DELETE_TODO_TO_REPOSITORY, props["todo"].id);
+}
 </script>
 
 <template>
@@ -32,7 +36,7 @@ function handleEdit({ key }) {
     <div class="view" @dblclick="isEdit = true">
       <input class="toggle" type="checkbox" />
       <label>{{ todo.content }}</label>
-      <button class="destroy"></button>
+      <button class="destroy" @click="handleDelete"></button>
     </div>
     <input
       class="edit"
