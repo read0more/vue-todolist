@@ -30,10 +30,10 @@ export default (todoRepository) => {
       });
     },
 
-    deleteTodoToRepository({ commit }) {
+    deleteTodoToRepository({ commit }, id) {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
-          commit(mutations.DELETE_TODO);
+          commit(mutations.DELETE_TODO, id);
           resolve();
         }, 100);
       });

@@ -30,7 +30,8 @@ describe("todos actions", () => {
   });
 
   test("commit deleteTodo", async () => {
-    await actions.deleteTodoToRepository({ commit: commitStub });
-    expect(commitStub).toHaveBeenCalledWith(mutations.DELETE_TODO);
+    const id = 1;
+    await actions.deleteTodoToRepository({ commit: commitStub }, id);
+    expect(commitStub).toHaveBeenCalledWith(mutations.DELETE_TODO, id);
   });
 });
