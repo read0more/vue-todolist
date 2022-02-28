@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { useStore } from "vuex";
 
 const store = useStore();
@@ -11,9 +11,9 @@ const doneTodos = computed(() => store.getters["todos/doneTodos"]);
   <footer id="footer">
     <span id="todo-count"> <strong></strong> {{ leftTodos.size }} left </span>
     <ul id="filters">
-      <li><a href="#/all">All</a></li>
-      <li><a href="#/active">Active</a></li>
-      <li><a href="#/completed">Completed</a></li>
+      <li><router-link to="/all">All</router-link></li>
+      <li><router-link to="/active">Active</router-link></li>
+      <li><router-link to="/completed">Completed</router-link></li>
     </ul>
     <button id="clear-completed">Clear completed {{ doneTodos.size }}</button>
   </footer>

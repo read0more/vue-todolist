@@ -1,6 +1,6 @@
 export default {
   todos: (state) => {
-    return state.todos;
+    return new Map(state.todos);
   },
   doneTodos: (state) => {
     return new Map(
